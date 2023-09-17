@@ -106,11 +106,6 @@ const Joblist = () => {
   };
   return (
     <div>
-      {/* <h1 className="title">Job</h1>
-      <h2 className="subtitle">List of Jobs</h2>
-      <Link to={"/jobs/create"}>
-        <button className="button is-primary">Add Job</button>
-      </Link> */}
       <div className="text-center text-2xl font-bold">Data Jobs</div>
       <div className="mx-10 mt-5">
         <div className="flex justify-between items-center">
@@ -151,8 +146,8 @@ const Joblist = () => {
                 fontSize: "1rem",
                 fontWeight: "bold",
                 color: "#2D3748",
-                textTransform: "uppercase", // Uppercase text
-                backgroundColor: "#F9FAFB", // Gray background color
+                textTransform: "uppercase",
+                backgroundColor: "#F9FAFB",
               },
             },
             cells: {
@@ -164,57 +159,6 @@ const Joblist = () => {
           }}
         />
       </div>
-
-      {/* <table className="table is-striped is-fullwidth mt-2">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>Industry</th>
-            <th>Career</th>
-            <th>Est Salary</th>
-            <th>Job Type</th>
-            <th>Status</th>
-            <th>Publisher</th>
-            <th>Publish Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {jobs.map((job, index) => (
-            <tr key={job.uuid}>
-              <td>{index + 1}</td>
-              <td>{job.title}</td>
-              <td>{job.category.name}</td>
-              <td>{job.career.name}</td>
-              <td>{job.est_gaji}</td>
-              <td>{job.jobtype.name}</td>
-              <td>{job.status}</td>
-              <td>{job.user.name}</td>
-              <td>
-                {format(new Date(job.createdAt), "dd MMMM yyyy", {
-                  locale: id,
-                })}
-              </td>
-
-              <td>
-                <Link
-                  to={`/jobs/edit/${job.uuid}`}
-                  className="button is-small is-info"
-                >
-                  Edit
-                </Link>
-                <Link
-                  onClick={() => deleteJob(job.uuid)}
-                  className="button is-small is-danger"
-                >
-                  Delete
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
     </div>
   );
 };

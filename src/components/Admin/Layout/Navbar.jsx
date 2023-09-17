@@ -88,9 +88,9 @@ const Navbar = () => {
             {user && user.name !== null && (
               <li className="md:ml-8 text-base md:my-0 my-7 ">
                 <NavLink
-                  to={"/user"}
+                  to={"/dashboard"}
                   className={
-                    location.pathname === "/user"
+                    location.pathname === "/dashboard"
                       ? "text-blue-700 relative group uppercase font-bold"
                       : "text-gray-800 relative group uppercase "
                   }

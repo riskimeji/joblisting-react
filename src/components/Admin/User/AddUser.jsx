@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -28,7 +28,12 @@ const AddUser = () => {
   };
   return (
     <div>
-      <h1 className="title">User</h1>
+      <div className="text-blue-500 cursor-pointer justify-start ml-6">
+        <NavLink to={"/dashboard"}>Dashboard / </NavLink>
+        <NavLink to={"/users"}>Users / </NavLink>
+        <NavLink to={"/users/create"}>Create</NavLink>
+      </div>
+      {/* <h1 className="title">User</h1>
       <h2 className="subtitle">Add User</h2>
       <div className="card is-shadowless">
         <div className="card-content">
@@ -113,7 +118,7 @@ const AddUser = () => {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

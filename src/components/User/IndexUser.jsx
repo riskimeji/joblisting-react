@@ -39,9 +39,9 @@ const IndexUser = () => {
 
   const { user } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(getMe());
-  }, [user, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getMe());
+  // }, [user, dispatch]);
 
   const regex = /(<([^>]+)>)/gi;
 
@@ -115,8 +115,11 @@ const IndexUser = () => {
       border: "1px solid #ccc",
       borderRadius: "8px",
       boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-      padding: "20px",
+      padding: "40px",
       transition: "opacity 0.3s ease-in-out, transform 0.3s ease-in-out",
+      maxHeight: "80vh",
+      margin: "auto",
+      overflowY: "auto",
     },
   };
 
@@ -189,58 +192,64 @@ const IndexUser = () => {
   return (
     <div>
       <div className="md:flex mx-7 gap-4 pb-10">
-        <Modal
-          style={customStyles}
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Detail Pekerjaan"
-        >
-          {selectedJob && (
-            <div className="flex-col md:min-w-[674px] min-w-[300px] bg-white">
-              <h1 className="text-lg font-bold">{selectedJob.title}</h1>
-              <div className="text-sm text-[#89898d] mt-1 ">
-                {selectedJob.jobtype.name}&nbsp;&nbsp;●&nbsp;&nbsp;
-                {selectedJob.career.name}
-                &nbsp;&nbsp;●&nbsp;&nbsp;{selectedJob.est_gaji}
-              </div>
-              <div className="">
-                <div className="mt-3 text-[#89898d]">
-                  {selectedJob.description.substring(0, 300).replace(regex, "")}
+        <div className="">
+          <Modal
+            style={customStyles}
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Detail Pekerjaan"
+          >
+            {selectedJob && (
+              <div className="flex-col md:min-w-[674px] min-w-[300px] bg-white ">
+                <h1 className="text-lg font-bold">{selectedJob.title}</h1>
+                <div className="text-sm text-[#89898d] mt-1 ">
+                  {selectedJob.jobtype.name}&nbsp;&nbsp;●&nbsp;&nbsp;
+                  {selectedJob.career.name}
+                  &nbsp;&nbsp;●&nbsp;&nbsp;{selectedJob.est_gaji}
                 </div>
-                <div className="mt-3">
-                  <div className="cursor-pointer p-2 mb-2 bg-[#ecf3fd] rounded-md inline-block  text-[#2986ff] mr-2">
-                    {selectedJob.category.name}
+                <div className="">
+                  <div className="mt-3 text-[#89898d]">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: selectedJob.description,
+                      }}
+                    ></div>
                   </div>
-                </div>
-                <div className="mt-2 ">
-                  <div className="h-full bg-gray-400 p-[0.5px] rounded-lg"></div>
-                  <div className="">
-                    <div className="flex items-center text-base mt-3">
-                      <IoLocationSharp className="text-red-700 text-xl" />
-                      <div className="flex justify-between w-full">
-                        <div className="text-[#89898d] text-base">
-                          &nbsp;{selectedJob.address}
-                        </div>
-                        <div className="text-[#89898d] text-base">
-                          {format(
-                            new Date(selectedJob.createdAt),
-                            "dd MMMM yyyy",
-                            {
-                              locale: id,
-                            }
-                          )}
+                  <div className="mt-3">
+                    <div className="cursor-pointer p-2 mb-2 bg-[#ecf3fd] rounded-md inline-block  text-[#2986ff] mr-2">
+                      {selectedJob.category.name}
+                    </div>
+                  </div>
+                  <div className="mt-2 ">
+                    <div className="h-full bg-gray-400 p-[0.5px] rounded-lg"></div>
+                    <div className="">
+                      <div className="flex items-center text-base mt-3">
+                        <IoLocationSharp className="text-red-700 text-xl" />
+                        <div className="flex justify-between w-full">
+                          <div className="text-[#89898d] text-base">
+                            &nbsp;{selectedJob.address}
+                          </div>
+                          <div className="text-[#89898d] text-base">
+                            {format(
+                              new Date(selectedJob.createdAt),
+                              "dd MMMM yyyy",
+                              {
+                                locale: id,
+                              }
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <button className="p-2 ml-2 px-6 bg-blue-700 text-white rounded-lg mt-3 flex justify-center">
+                  Apply
+                </button>
               </div>
-              <button className="p-2 ml-2 px-6 bg-blue-700 text-white rounded-lg mt-3 flex justify-center">
-                Apply
-              </button>
-            </div>
-          )}
-        </Modal>
+            )}
+          </Modal>
+        </div>
 
         <div className="md:flex flex-col">
           <div className="bg-[#ffffff] h-auto border border-gray-300 rounded-md md:w-[375px]">
