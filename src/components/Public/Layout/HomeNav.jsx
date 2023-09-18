@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../../jobseeker-logos.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getMe } from "../../../features/authSlice";
 import { LogOut, reset } from "../../../features/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -80,12 +79,22 @@ const HomeNav = () => {
                 </NavLink>
               </li>
             )}
-            <li className="md:ml-8 text-base md:my-0 my-7">
-              <a href="" className="text-gray-800 relative group uppercase">
-                find job
-                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#0f2765] transform -translate-x-1/2 origin-center duration-300 group-hover:w-full translate-y-2 "></span>
-              </a>
-            </li>
+            {user && user.name !== null && (
+              <li className="md:ml-8 text-base md:my-0 my-7 ">
+                <NavLink
+                  to={"/user/job-applied"}
+                  className={
+                    location.pathname === "/user/job-applied"
+                      ? "text-blue-700 relative group uppercase font-bold"
+                      : "text-gray-800 relative group uppercase "
+                  }
+                >
+                  job application
+                  <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#0f2765] transform -translate-x-1/2 origin-center duration-300 group-hover:w-full translate-y-2 "></span>
+                </NavLink>
+              </li>
+            )}
+
             <li className="md:ml-8 text-base md:my-0 my-7">
               <a href="" className=" text-gray-800 relative group uppercase">
                 categories

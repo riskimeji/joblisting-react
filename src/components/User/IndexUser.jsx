@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMe } from "../../features/authSlice";
 import { format } from "date-fns";
 import id from "date-fns/locale/id";
 import Modal from "react-modal";
@@ -27,6 +26,7 @@ const IndexUser = () => {
   const [careers, setCareers] = useState([]);
   const [jobtypes, setJobtypes] = useState([]);
   const [msg, setMsg] = useState("");
+  const [msgApplied, setMsgApplied] = useState("");
   const [categories, setCategories] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -36,6 +36,7 @@ const IndexUser = () => {
   const [selectedJobTypes, setSelectedJobTypes] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.auth);
 
@@ -47,6 +48,23 @@ const IndexUser = () => {
 
   const handleSearchChange = (e) => {
     setSearchKeyword(e.target.value);
+  };
+
+  const [jobId, setJobId] = useState("");
+
+  const applyJob = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/user/jobapplied", {
+        userId: user.id,
+        jobId: jobId,
+      });
+      setMsgApplied("Application successful!");
+      // navigate("/user/jobapplied");
+    } catch (error) {
+      if (error.response) {
+        setMsgApplied(error.response.data.message);
+      }
+    }
   };
 
   const handleCareerChange = async (e) => {
@@ -143,9 +161,11 @@ const IndexUser = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = (job) => {
     setSelectedJob(job);
+    setJobId(job.id);
     setModalIsOpen(true);
   };
   const closeModal = () => {
+    setMsgApplied(null);
     setSelectedJob(null);
     setModalIsOpen(false);
   };
@@ -243,9 +263,18 @@ const IndexUser = () => {
                     </div>
                   </div>
                 </div>
-                <button className="p-2 ml-2 px-6 bg-blue-700 text-white rounded-lg mt-3 flex justify-center">
+                <button
+                  type="submit"
+                  onClick={() => {
+                    // setJobId(selectedJob.id);
+                    // console.log(selectedJob.id);
+                    applyJob();
+                  }}
+                  className="p-2 ml-2 px-6 bg-blue-700 text-white rounded-lg mt-3 flex justify-center"
+                >
                   Apply
                 </button>
+                <div className="text-center">{msgApplied}</div>
               </div>
             )}
           </Modal>

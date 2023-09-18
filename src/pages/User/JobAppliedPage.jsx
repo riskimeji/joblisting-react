@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import UserLayout from "./Layout/UserLayout";
-import IndexUser from "../../components/User/IndexUser";
+import IndexJobApplied from "../../components/User/JobApplied/IndexJobApplied";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { getMe } from "../../features/authSlice";
-const UserPage = () => {
+
+const JobAppliedPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isError } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -19,16 +19,15 @@ const UserPage = () => {
       navigate("/login");
     }
   }, [isError, navigate]);
-  // console.log(user.id);
   return (
     <div className="bg-[#f6f6f6]">
       <UserLayout>
         <div style={{ minHeight: "100vh" }}>
-          <IndexUser />
+          <IndexJobApplied />
         </div>
       </UserLayout>
     </div>
   );
 };
 
-export default UserPage;
+export default JobAppliedPage;

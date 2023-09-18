@@ -127,6 +127,16 @@ const Navbar = () => {
                       JOB
                     </NavLink>
                     <NavLink
+                      to={"/jobs/applied"}
+                      className={
+                        location.pathname === "/jobs/applied"
+                          ? "block px-4 py-2 hover:bg-blue-900 bg-blue-700 text-white "
+                          : "block px-4 py-2 hover:bg-gray-100 "
+                      }
+                    >
+                      JOB APPLIED
+                    </NavLink>
+                    <NavLink
                       to={"/users"}
                       className={
                         location.pathname === "/users"

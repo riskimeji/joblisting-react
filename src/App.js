@@ -27,8 +27,11 @@ import JobType from "./pages/Admin/JobType/JobType";
 import JobTypeCreate from "./pages/Admin/JobType/JobTypeCreate";
 import JobTypeEdit from "./pages/Admin/JobType/JobTypeEdit";
 
+import JobAppliedAdminPage from "./pages/Admin/JobApplied/JobAppliedPage";
+
 //User
 import UserPage from "./pages/User/UserPage";
+import JobAppliedPage from "./pages/User/JobAppliedPage";
 
 function App() {
   return (
@@ -60,6 +63,8 @@ function App() {
           <Route path="/jobtype/create" element={<JobTypeCreate />} />
           <Route path="/jobtype/edit/:uuid" element={<JobTypeEdit />} />
 
+          <Route path="/jobs/applied" element={<JobAppliedAdminPage />} />
+
           {/* Public */}
           <Route path="/" element={<IndexHome />} />
           <Route path="/job/detail" element={<JobPage />} />
@@ -69,6 +74,7 @@ function App() {
           {/* User */}
 
           <Route path="/user" element={<UserPage />} />
+          <Route path="/user/job-applied" element={<JobAppliedPage />} />
         </Routes>
       </BrowserRouter>
     </div>
