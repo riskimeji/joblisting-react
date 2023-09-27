@@ -63,7 +63,7 @@ const Navbar = () => {
     <div className="">
       <nav
         className={`w-full top-0 left-0 font-[Noto Sans] transition-shadow duration-300 ease-linear ${
-          scrolled ? "shadow-md" : ""
+          scrolled ? "shadow-md" : "shadow-md"
         }`}
       >
         <div className="md:flex items-center justify-between bg-[#f2f5f1] py-4 md:px-10 px-7">

@@ -8,8 +8,6 @@ import Jobcreate from "./pages/Admin/Job/Jobcreate";
 import IndexHome from "./pages/Public/IndexHome";
 import JobPage from "./pages/Public/Job/JobPage";
 import JobEdit from "./pages/Admin/Job/JobEdit";
-import UserEdit from "./pages/Admin/User/UserEdit";
-import UserAdd from "./pages/Admin/User/UserAdd";
 
 //Admin
 
@@ -18,8 +16,6 @@ import CareerCreate from "./pages/Admin/Career/CareerCreate";
 import CareerEdit from "./pages/Admin/Career/CareerEdit";
 
 import Category from "./pages/Admin/Category/Category";
-import CategoryCreate from "./pages/Admin/Category/CategoryCreate";
-import CategoryEdit from "./pages/Admin/Category/CategoryEdit";
 
 import Subscription from "./pages/Admin/Subscription/Subscription";
 
@@ -33,6 +29,7 @@ import JobAppliedAdminPage from "./pages/Admin/JobApplied/JobAppliedPage";
 import UserPage from "./pages/User/UserPage";
 import JobAppliedPage from "./pages/User/JobAppliedPage";
 
+import Error from "./components/Error";
 function App() {
   return (
     <div>
@@ -46,15 +43,11 @@ function App() {
           <Route path="/career/edit/:uuid" element={<CareerEdit />} />
 
           <Route path="/category" element={<Category />} />
-          <Route path="/category/create" element={<CategoryCreate />} />
-          <Route path="/category/edit/:uuid" element={<CategoryEdit />} />
 
           <Route path="/jobs/edit/:uuid" element={<JobEdit />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/jobs/create" element={<Jobcreate />} />
 
-          <Route path="/users/edit/:uuid" element={<UserEdit />} />
-          <Route path="/users/create" element={<UserAdd />} />
           <Route path="/users" element={<Users />} />
 
           <Route path="/subscription" element={<Subscription />} />
@@ -75,6 +68,8 @@ function App() {
 
           <Route path="/user" element={<UserPage />} />
           <Route path="/user/job-applied" element={<JobAppliedPage />} />
+
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
