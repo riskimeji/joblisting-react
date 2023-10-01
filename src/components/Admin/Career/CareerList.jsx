@@ -28,12 +28,12 @@ const CareerList = () => {
     {
       name: "Actions",
       cell: (row) => (
-        <div className="flex justify-items-center gap-2">
+        <div className='flex justify-items-center gap-2'>
           <Link
             onClick={() => deleteCareer(row.uuid)}
-            className="button is-small is-danger"
+            className='button is-small is-danger'
           >
-            <IoTrashSharp className="text-red-600 text-2xl" />
+            <IoTrashSharp className='text-red-600 text-2xl' />
           </Link>
         </div>
       ),
@@ -131,12 +131,12 @@ const CareerList = () => {
   };
   return (
     <>
-      <div className="mx-10 md:mt-5 mt-7 ">
-        <div className="text-center text-2xl mt-3 mb-3">Career List</div>
-        <div className="flex justify-between items-center">
-          <div className="">
+      <div className='mx-10 md:mt-5 mt-7 '>
+        <div className='text-center text-2xl mt-3 mb-3'>Career List</div>
+        <div className='flex justify-between items-center'>
+          <div className=''>
             <button
-              className="p-3 rounded-lg bg-blue-700 text-white"
+              className='p-3 rounded-lg bg-blue-700 text-white'
               onClick={openModalAdd}
             >
               {"Add New"}
@@ -148,30 +148,30 @@ const CareerList = () => {
             onRequestClose={closeModal}
           >
             {selectedCareer && (
-              <div className="w-max md:w-[499px]">
-                <h1 className="font-bold text-center mb-3">
+              <div className='w-max md:w-[499px]'>
+                <h1 className='font-bold text-center mb-3'>
                   {typeModal === "add" ? "Add Career" : "Edit Career"}
                 </h1>
-                {msg && <p className="text-center">{msg}</p>}
+                {msg && <p className='text-center'>{msg}</p>}
                 <form
                   onSubmit={typeModal === "add" ? saveCareer : updateCareer}
                 >
-                  <div className="mt-5">
-                    <label htmlFor="">{"Name"}</label>
+                  <div className='mt-5'>
+                    <label htmlFor=''>{"Name"}</label>
                     <br />
                     <input
-                      type="text"
+                      type='text'
                       value={name}
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
-                      name="name"
-                      className="w-full mt-2 py-1 outline-none border-b-2 border-black focus:border-blue-500"
+                      name='name'
+                      className='w-full mt-2 py-1 outline-none border-b-2 border-black focus:border-blue-500'
                     />
                   </div>
                   <button
-                    type="submit"
-                    className="p-2 px-5 mt-5 bg-gray-900 text-white rounded-sm"
+                    type='submit'
+                    className='p-2 px-5 mt-5 bg-gray-900 text-white rounded-sm'
                   >
                     {typeModal === "add" ? "Create" : "Save"}
                   </button>
@@ -179,17 +179,17 @@ const CareerList = () => {
               </div>
             )}
           </Modal>
-          <div className="flex justify-end">
+          <div className='flex justify-end'>
             <input
-              type="text"
-              className="p-3 rounded-lg border mb-2 w-[230px]"
-              placeholder="search job by everything you want...."
+              type='text'
+              className='p-3 rounded-lg border mb-2 w-[230px]'
+              placeholder='search job by everything you want....'
               onChange={handleSearch}
             />
           </div>
         </div>
         <DataTable
-          className="shadow-lg bg-white"
+          className='shadow-lg bg-white'
           noHeader={true}
           columns={columns}
           data={careers}
@@ -224,42 +224,6 @@ const CareerList = () => {
           }}
         />
       </div>
-      {/* <h1 className="title"> Career</h1>
-      <h2 className="subtitle">List of Careers</h2>
-      <Link to={"/career/create"}>
-        <button className="button is-primary">Add Career</button>
-      </Link>
-      <table className="table is-striped is-fullwidth mt-2">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {careers.map((career, index) => (
-            <tr key={career.uuid}>
-              <td>{index + 1}</td>
-              <td>{career.name}</td>
-              <td>
-                <Link
-                  to={`/career/edit/${career.uuid}`}
-                  className="button is-small is-info"
-                >
-                  Edit
-                </Link>
-                <Link
-                  onClick={() => deleteCareer(career.uuid)}
-                  className="button is-small is-danger"
-                >
-                  Delete
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
     </>
   );
 };
